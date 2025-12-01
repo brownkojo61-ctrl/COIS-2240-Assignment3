@@ -58,13 +58,19 @@ public class VehicleRentalApp {
 		            	vehicle = null;
 		            }
                     
-                    if (vehicle != null){
-	                    vehicle.setLicensePlate(plate);
-	                    rentalSystem.addVehicle(vehicle);
+                    if (vehicle != null) {
+                        try {
+                            vehicle.setLicensePlate(plate);
+                            rentalSystem.addVehicle(vehicle);
+                            System.out.println("Vehicle added successfully.");
+                        } catch (IllegalArgumentException e) {
+                            System.out.println("Error: " + e.getMessage());
+                            System.out.println("Vehicle not added.");
+                        }
+                    } else {
+                        System.out.println("Vehicle not added successfully.");
                     }
-                    else {
-	                    System.out.println("Vehicle not added successfully.");
-                    }
+
                     break;
 
                 case 2:

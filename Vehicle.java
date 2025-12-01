@@ -27,14 +27,29 @@ public class Vehicle {
     }
 
         public void setLicensePlate(String plate) {
-        this.licensePlate = plate == null ? null : plate.toUpperCase();
-    }
+        	if (!isValidPlate(plate)) {
+        		 throw new IllegalArgumentException("Invalid license plate format. Must be 3 letters followed by 3 digits.");
+            }
+            this.licensePlate = plate;
+        }
+        private boolean isValidPlate(String plate) {
+            if (plate == null || plate.isEmpty()) {
+                return false;
+            }
+            
+            return plate.matches("^[A-Z]{3}[0-9]{3}$");
+        }
+
+        public String getLicensePlate() {
+            return licensePlate;
+        }
+
 
     public void setStatus(VehicleStatus status) {
         this.status = status;
     }
 
-    public String getLicensePlate() { return licensePlate; }
+    
     public String getMake() { return make; }
     public String getModel() { return model; }
     public int getYear() { return year; }
